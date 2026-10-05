@@ -1,0 +1,16 @@
+# Each lead owns their stack. A standard the author cannot amend stops being theirs.
+# Cross-stack changes — wire format, money handling, logging, the review policy —
+# need agreement from every stack they affect.
+
+*                               @praveensparkout
+
+/standards/angular/             @jegadeshpalanisamy-sparkout @praveensparkout
+/standards/react-nextjs/        @jegadeshpalanisamy-sparkout @praveensparkout
+/standards/nodejs/              @rajadavid98 @praveensparkout
+/standards/python/              @Kishorerayan12 @praveensparkout
+/standards/springboot/          @naveen-kumar29 @praveensparkout
+/standards/mobile-flutter/      @shanmugam105 @praveensparkout
+/standards/solidity/            @praveensparkout
+
+/skills/                        @praveensparkout
+/config/                        @praveensparkout

@@ -1,0 +1,5 @@
+# Build scratch — PDFs are committed, intermediates are not
+*.html
+*_raw.pdf
+__pycache__/
+.DS_Store

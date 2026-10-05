@@ -1,0 +1,39 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-raw-types: true
+  errors:
+    use_build_context_synchronously: error     # section 3.2 — crashes, not style
+    avoid_print: error
+    empty_catches: error
+    unawaited_futures: error
+    prefer_const_constructors: warning
+    missing_required_param: error
+    missing_return: error
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+
+linter:
+  rules:
+    - always_declare_return_types
+    - avoid_dynamic_calls
+    - avoid_empty_else
+    - avoid_print
+    - avoid_slow_async_io
+    - cancel_subscriptions
+    - close_sinks
+    - empty_catches
+    - file_names
+    - library_private_types_in_public_api
+    - prefer_const_constructors
+    - prefer_const_literals_to_create_immutables
+    - prefer_final_fields
+    - prefer_final_locals
+    - sized_box_for_whitespace
+    - sort_child_properties_last
+    - unawaited_futures
+    - use_build_context_synchronously
+    - use_super_parameters
