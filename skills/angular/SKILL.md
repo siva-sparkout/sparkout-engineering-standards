@@ -1,6 +1,9 @@
 ---
 name: angular-standard
-description: Use when writing, reviewing, or modifying Angular code. Enforces the Angular Coding Standard v2.0 — structure, error handling, logging and redaction, auth and secrets, money handling, design tokens and component architecture.
+description: >-
+  Use when writing, reviewing, or modifying Angular code. Enforces the Angular
+  Coding Standard v2.0 — structure, error handling, logging and redaction, auth
+  and secrets, money handling, design tokens and component architecture.
 ---
 
 # Angular Standard
@@ -9,8 +12,6 @@ Apply to **new and changed code**. Do not retrofit existing code unless asked.
 Angular 17+: standalone components, signals, built-in control flow, functional interceptors.
 
 ## Never
-
-### Do not
 
 - Put a token or any PII in `localStorage` / `sessionStorage`.
 - Commit a secret, API key, or credential anywhere in the repo — including `environment.ts`. The bundle is public.
@@ -25,14 +26,14 @@ Angular 17+: standalone components, signals, built-in control flow, functional i
 - Use `catchError(() => of([]))` that hides a real failure as an empty list.
 - Map `snake_case` to `camelCase` in a feature. Wire format is camelCase; a `snake_case` endpoint is a backend defect.
 - Call functions in templates except signal reads. Precompute `.filter()` and `.sort()` in the class or a pure pipe.
-- Use `@for` with `$index` as the track. Track a stable id .
-- Put business logic in a constructor, or use `setTimeout` to paper over change detection. Use `inject()` and `ngOnInit` (section 11).
-- Mutate an `@Input()`. Use `input()` and `output()`. A child that writes its inputs cannot be reused .
-- Set `Authorization` outside the auth interceptor. A second header is a defect .
-- Let the browser call a third party with a key. The browser calls our API; our API holds the secret. A Stripe publishable key or a Mapbox public token is the exception. If unsure which you are holding, treat it as a secret .
-- Use AWS credentials, or a public object URL, for uploads. Client size and type checks are UX. The server returns a short-lived presigned PUT, the browser uploads to S3, and the API verifies the object before it is valid. The bucket stays private .
-- Trust the wallet. Submit the transaction hash, then wait for our backend to confirm sender, recipient, amount, and confirmation depth. Contract addresses and chain ids come from `APP_CONFIG` .
-- Use `<div>` click handlers or `outline: none`. Actions are `<button>`, navigation is `<a>`, every input has a `<label>`, every icon-only control has an `aria-label`, and touch targets are at least 44×44px .
+- Track `@for` by `$index` on a list that can reorder, filter or delete. Track a stable id — `$index` reattaches component state to the wrong row.
+- Put business logic in a constructor, or use `setTimeout` to paper over change detection. Use `inject()` and `ngOnInit`.
+- Mutate an `@Input()`. Use `input()` and `output()`. A child that writes its inputs cannot be reused.
+- Set `Authorization` outside the auth interceptor. A second header is a defect.
+- Call a third party from the browser with a secret key (Stripe publishable / Mapbox public tokens excepted).
+- Use AWS credentials or a public object URL for uploads.
+- Treat a wallet submission as confirmed payment.
+- Use `<div>` click handlers or `outline: none`.
 
 ## Always
 
@@ -43,6 +44,10 @@ Angular 17+: standalone components, signals, built-in control flow, functional i
 - Environment values from `APP_CONFIG` (runtime `/config.json`), never `environment.prod.ts`.
 - Tokens in memory only; session is an httpOnly cookie set by the backend.
 - Show the correlation id on the error state.
+- Browser calls our API; our API holds third-party secrets. Stripe publishable / Mapbox public tokens are the exception.
+- Uploads: client size/type checks are UX; server returns a short-lived presigned PUT; browser uploads to S3; API verifies the object; bucket stays private.
+- Wallets: submit the transaction hash; backend confirms sender, recipient, amount, and confirmation depth. Contract addresses and chain ids come from `APP_CONFIG`.
+- Actions are `<button>`, navigation is `<a>`, every input has a `<label>`, every icon-only control has an `aria-label`, touch targets ≥ 44×44px.
 
 ## Patterns to copy
 
